@@ -32,6 +32,18 @@ class Jobs(db.Model):
     status = db.Column(db.Enum(StatusEnum))
     bids = db.relationship('Bids')
 
+    def serialize(self):
+        return {
+            'id': self.id,
+            'origin': self.origin,
+            'destination': self.destination,
+            'description': self.description,
+            'shipment_date': self.shipment_date,
+            'budget': self.budget,
+            'expired_date': self.expired_date,
+            'status': self.status.name
+        }
+
 class Bids(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
@@ -41,3 +53,12 @@ class Bids(db.Model):
     transporter_id = db.Column(db.Integer, db.ForeignKey('transporter.id'))
     job_id = db.Column(db.Integer, db.ForeignKey('jobs.id'))
     win_status = db.Column(db.Boolean, nullable=False)
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'description': self.description,
+            'price': self.price,
+            'vehicle': self.vehicle,
+            'win_status': self.win_status
+        }
