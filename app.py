@@ -19,6 +19,12 @@ db = SQLAlchemy(app)
 
 # from models import TrackRate, ExchangeRate, ExchangeRateData
 
-@app.route("/")
-def hello():
-    return "Hello World!"
+@app.route("/job", methods=['GET'])
+def job_data():
+    sort_param = request.form.get('ship_date')
+    pass
+
+@app.route("/bid", methods=['GET'])
+def bid_data():
+    sort_param = request.form.get('price')
+    pass
