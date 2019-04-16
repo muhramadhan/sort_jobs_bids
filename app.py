@@ -17,7 +17,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\
 %(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
 db = SQLAlchemy(app)
 
-# from models import TrackRate, ExchangeRate, ExchangeRateData
+from models import Shipper, Transporter, Jobs, Bids
 
 @app.route("/job", methods=['GET'])
 def job_data():
